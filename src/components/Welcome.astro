@@ -13,6 +13,11 @@ import background from '../assets/background.svg';
 			<h1>
 				My Astro Site
 			</h1>
+
+			<div id="nav">
+				<a href="/about">About Me</a>
+				<a href="/blog">Blog</a>
+			</div>
 		
 		</section>
 	</main>
@@ -132,6 +137,16 @@ import background from '../assets/background.svg';
 		background: rgba(255, 255, 255, 1);
 		border-radius: 16px;
 		border: 1px solid white;
+	}
+
+	#nav{
+		display: flex;
+		align-items: center;
+		gap: 2em;
+	}
+
+	#nav a{
+		text-decoration-line: none;
 	}
 
 	#news {
