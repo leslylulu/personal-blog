@@ -1,17 +1,17 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import { uppercase } from 'astro:schema';
 import Layout from '../layouts/Layout.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 
-const pageTitle = "About Me!!!";
+const pageTitle = "About Me :)";
 
 const identity = {
 	firstName: "Lulu",
 	city: "Ottawa",
 	occupation: "Frontend Developer",
-	hobbies: "Cook, Hike"
+	hobbies: ["Cook", "Hike"]
 };
 
 const skills = ["HTML", "CSS", "JavaScript", "React", "Astro"];
@@ -21,6 +21,8 @@ const happy = true;
 const finished = false;
 const goal = 2;
 
+const skillColor = "#D5FFE4"
+const textCase = "uppercase"
 ---
 
 
@@ -40,8 +42,8 @@ const goal = 2;
 		}
 	</ul>
 	<p>My skills are:</p>
-	<ul>
-		{skills.map((skill) => <li>{skill}</li>)}
+	<ul class="list">
+		{skills.map((skill) => <li class="skill">{skill}</li>)}
 	</ul>
 
 	{happy && <p>I am happy to be learning Astro!</p>}
@@ -50,3 +52,25 @@ const goal = 2;
 
 	{goal === 2 ? <p>My goal is to finish in 2 days.</p> : <p>My goal is not 2 days.</p>}
 </Layout>
+
+
+<style define:vars={{skillColor, textCase}}>
+	h1{
+		color: purple;
+		text-transform: var(--textCase);
+		font-size: 2rem;
+	}
+
+	.list{
+		display: flex;
+		gap: 1rem;
+	}
+
+	.skill{
+		list-style: none;
+		background-color: var(--skillColor);
+		border-radius: 0.5rem;
+		padding: 0.5rem 1rem;
+	}
+
+</style>
