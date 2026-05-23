@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -7,9 +9,7 @@ import '../styles/global.css';
 ---
 
 <Layout>
-	<a href="/">Home</a>
-	<a href="/about">About Me</a>
-	<a href="/blog">Blog</a>
+	<Header/>
 	<h1>Blog</h1>
 	<h2>This is my Blog Page</h2>
 
@@ -18,4 +18,5 @@ import '../styles/global.css';
 		<li><a href="/posts/post-2">Post 2</a></li>
 		<li><a href="/posts/post-3">Post 3</a></li>
 	</ul>
+	<Footer/>
 </Layout>
