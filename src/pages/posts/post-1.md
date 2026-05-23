@@ -9,7 +9,7 @@ image:
 tags: ["astro", "Lulu Zhang", "blogging", "learning in public"]
 ---
 
-<!-- the above is called frontmatter -->
+<!-- the above is called frontmatter or data in the collection from content.config.js file -->
 <!-- not show on the page it will enhance the page -->
 
 
