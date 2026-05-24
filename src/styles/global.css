@@ -19,7 +19,7 @@ html.dark {
 }
 
 .dark a {
-	color: #ff9776;
+	color: #d71821;
 }
 
 html {
@@ -75,7 +75,7 @@ h1 {
 .nav-links a:hover,
 .nav-links a:focus {
 	color: white;
-	background-color: #ff9776;
+	background-color: #d71821;
 	border-radius: 0.5rem;
 }
 

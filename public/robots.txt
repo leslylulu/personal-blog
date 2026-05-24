@@ -1,0 +1,6 @@
+# Allow search engines to index the site
+User-agent: *
+Allow: /
+
+# Sitemap (Netlify deploy )
+Sitemap: https://astrolulu.netlify.app/sitemap.xml

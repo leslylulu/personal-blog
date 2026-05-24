@@ -4,7 +4,6 @@ import MarkdownPostLayout from "../../layouts/MarkdownPostLayout.astro";
 
 export async function getStaticPaths(){
 	const posts = await getCollection('blog');
-	// console.log("posts =", posts[0]);
 
 	return posts.map(post => ({
 		params: { slug: post.id },
