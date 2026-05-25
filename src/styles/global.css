@@ -1,3 +1,4 @@
+@import url('https://fonts.bunny.net/css?family=metropolis:400,500,700&display=swap');
 @import "tailwindcss";
 
 html.dark {
@@ -25,7 +26,8 @@ html.dark {
 
 html {
 	background-color: #f9f6e8;
-	font-family: sans-serif;
+	/* font-family: sans-serif; */
+	font-family: 'Metropolis', sans-serif;
 }
 
 body {
