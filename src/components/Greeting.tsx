@@ -12,8 +12,11 @@ export default function Greeting({ messages }: GreetingProps) {
 
 	return (
 		<div>
-			<h3>{greeting}! Thank you for visiting!</h3>
-			<button onClick={() => setGreeting(randomMessage())}>
+			<h3 class="text-lg font-semibold my-4">{greeting}! Thank you for visiting!</h3>
+			<button 
+				onClick={() => setGreeting(randomMessage())}
+				class="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 transition-colors font-semibold"
+			>
 				New Greeting
 			</button>
 		</div>

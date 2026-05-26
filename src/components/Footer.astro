@@ -2,15 +2,14 @@
 import Social from './Social.astro';
 ---
 
-<style>
-  footer {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-</style>
-
-
-<footer>
-  <Social platform="github" username="leslylulu/astro-study" />
+<footer class="flex gap-2 md:gap-4 mt-0 py-4 md:py-8 bg-black w-full">
+  <div class="flex flex-col md:flex-row w-full justify-between items-start md:items-center gap-4 md:gap-0 max-w-6xl mx-auto px-4 md:px-8">
+    <p class="text-white text-xs md:text-sm">
+      Designed & Developed by 
+      <Social target="_blank" link="https://profile.catlulu.net/" label="Lulu Zhang" />
+    </p>
+    <ul class="text-xs md:text-sm">
+      <Social target="_blank" link="https://github.com/leslylulu/astro-study" label="Github" />
+    </ul>
+  </div>
 </footer>

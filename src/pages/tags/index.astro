@@ -8,29 +8,11 @@ const allPosts = await getCollection("blog");
 const tags = [...new Set(allPosts.map(post => post.data.tags).flat())];
 ---
 <BaseLayout pageTitle={pageTitle}>
-	<div class="tags">
+	<div class="flex flex-wrap gap-1">
     {tags.map((tag) => (
-      <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
+      <p class="list-none border border-dashed border-gray-400 rounded px-4 py-2 text-sm bg-blue-50">
+        <a href={`/tags/${tag}`} class="text-blue-700 hover:text-blue-900">{tag}</a>
+      </p>
     ))}
   </div>
 </BaseLayout>
-
-<style>
-  a {
-    color: #00539F;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .tag {
-    margin: 0.25em;
-    border: dotted 1px #a1a1a1;
-    border-radius: .5em;
-    padding: .5em 1em;
-    font-size: 1.15em;
-    background-color: #F8FCFD;
-  }
-</style>

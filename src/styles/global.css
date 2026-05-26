@@ -1,106 +1,81 @@
-@import url('https://fonts.bunny.net/css?family=metropolis:400,500,700&display=swap');
 @import "tailwindcss";
 
-html.dark {
-	background-color: #0d0950;
-	color: #fff;
+@theme {
+	--color-cream: #f9f6e8;
+	--color-navy: #0d0950;
+	--font-sans: 'Metropolis', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial;
 }
 
-.dark .menu {
-	background-color: #fff;
-	color: #000;
+@layer base {
+	html {
+		background-color: #f9f6e8;
+		font-family: var(--font-sans);
+		@apply text-gray-900;
+	}
+
+	html.dark {
+		background-color: var(--color-navy);
+		@apply text-white;
+	}
+
+	body {
+		@apply mx-auto w-full p-0 leading-relaxed m-0;
+	}
+
+	h1 {
+		@apply my-4 text-4xl font-bold;
+	}
+
 }
 
-.dark .nav-links a:hover,
-.dark .nav-links a:focus {
-	color: #0d0950;
-}
+@layer components {
+	.menu {
+		background-color: #0d0950;
+		@apply text-white border-none font-bold text-xl px-2.5 py-1.5 cursor-pointer;
+	}
 
-.dark .nav-links a {
-	color: #fff;
-}
+	.dark .menu {
+		@apply bg-white text-black;
+	}
 
-.dark a {
-	color: #d71821;
-}
-
-html {
-	background-color: #f9f6e8;
-	/* font-family: sans-serif; */
-	font-family: 'Metropolis', sans-serif;
-}
-
-body {
-	margin: 0 auto;
-	width: 100%;
-	max-width: 80ch;
-	padding: 1rem;
-	line-height: 1.5;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-h1 {
-	margin: 1rem 0;
-	font-size: 2.5rem;
-}
-
-/* nav styles */
-.menu {
-	background-color: #0d0950;
-	border: none;
-	color: #fff;
-	font-size: 1.2rem;
-	font-weight: bold;
-	padding: 5px 10px;
-	cursor: pointer;
-}
-
-.nav-links {
-	width: 100%;
-	display: none;
-	margin: 0;
-}
-
-.nav-links a {
-	display: block;
-	text-align: center;
-	padding: 0.3rem 0;
-	text-decoration: none;
-	font-size: 1.2rem;
-	font-weight: bold;
-	text-transform: uppercase;
-	color: #0d0950;
-}
-
-.nav-links a:hover,
-.nav-links a:focus {
-	color: white;
-	background-color: #d71821;
-	border-radius: 0.5rem;
-}
-
-:has(.menu[aria-expanded="true"]) .nav-links {
-	display: unset;
-}
-
-@media screen and (min-width: 636px) {
 	.nav-links {
-		margin-left: 5em;
-		display: block;
-		position: static;
-		width: auto;
-		background: none;
+		@apply w-full hidden m-0;
 	}
 
 	.nav-links a {
-		display: inline-block;
-		padding: 15px 20px;
+		@apply block text-center py-1 no-underline text-xl font-bold uppercase;
+		color: #0d0950;
 	}
 
-	.menu {
-		display: none;
+	.nav-links a:hover,
+	.nav-links a:focus {
+		@apply text-white bg-red-600 rounded;
+	}
+
+	.dark .nav-links a {
+		@apply text-white;
+	}
+
+	.dark .nav-links a:hover,
+	.dark .nav-links a:focus {
+		color: #0d0950;
+	}
+
+	:has(.menu[aria-expanded="true"]) .nav-links {
+		@apply block;
+	}
+
+	@media screen and (min-width: 636px) {
+		.nav-links {
+			@apply ml-20 block static w-auto bg-none;
+		}
+
+		.nav-links a {
+			@apply inline-block px-5 py-3.75;
+		}
+
+		.menu {
+			@apply hidden;
+		}
 	}
 }

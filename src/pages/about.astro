@@ -23,9 +23,6 @@ const skills: string[] = ["HTML", "CSS", "JavaScript", "React", "Astro"];
 const happy: boolean = true;
 const finished: boolean = true;
 const goal: number = 2;
-
-const skillColor: string = "#D5FFE4"
-const textCase: string = "uppercase"
 ---
 
 
@@ -40,8 +37,8 @@ const textCase: string = "uppercase"
 		}
 	</ul>
 	<p>My skills are:</p>
-	<ul class="list">
-		{skills.map((skill) => <li class="skill">{skill}</li>)}
+	<ul class="flex gap-4">
+		{skills.map((skill) => <li class="list-none bg-green-200 rounded px-4 py-2 uppercase text-sm">{skill}</li>)}
 	</ul>
 
 	{happy && <p>I am happy to be learning Astro!</p>}
@@ -50,25 +47,3 @@ const textCase: string = "uppercase"
 
 	{goal === 2 ? <p>My goal is to finish in 2 days.</p> : <p>My goal is not 2 days.</p>}
 </BaseLayout>
-
-
-<style define:vars={{skillColor, textCase}}>
-	h1{
-		color: purple;
-		text-transform: var(--textCase);
-		font-size: 2rem;
-	}
-
-	.list{
-		display: flex;
-		gap: 1rem;
-	}
-
-	.skill{
-		list-style: none;
-		background-color: var(--skillColor);
-		border-radius: 0.5rem;
-		padding: 0.5rem 1rem;
-	}
-
-</style>

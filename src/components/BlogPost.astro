@@ -6,14 +6,8 @@ interface Props{
 const { title, url } = Astro.props;
 ---
 
-<li><a href={url}>{title}</a></li>
-
-<style>
-	li{
-		list-style: none;
-	}
-
-	li a{
-		font-size: 1.1rem;
-	}
-</style>
+<li>
+	<a href={url} class="text-lg hover:underline">
+		{title}
+	</a>
+</li>

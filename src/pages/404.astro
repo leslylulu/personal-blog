@@ -1,4 +1,5 @@
 ---
+import '@styles/global.css';
 const pageTitle = "Page Not Found";
 ---
 
@@ -7,126 +8,34 @@ const pageTitle = "Page Not Found";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{pageTitle}</title>
-
-    <style>
-      :root {
-        --bg: #0b0f19;
-        --card: #111827;
-        --text: #e5e7eb;
-        --muted: #9ca3af;
-        --primary: #6366f1;
-        --border: rgba(255, 255, 255, 0.08);
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-        background: radial-gradient(circle at top, #111827, #0b0f19);
-        color: var(--text);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
-      }
-
-      main {
-        text-align: center;
-        max-width: 520px;
-        padding: 40px;
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        background: rgba(17, 24, 39, 0.6);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-      }
-
-      h1 {
-        font-size: 88px;
-        margin: 0;
-        letter-spacing: -2px;
-        line-height: 1;
-        background: linear-gradient(135deg, #6366f1, #22d3ee);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      h2 {
-        margin-top: 12px;
-        font-size: 22px;
-        font-weight: 600;
-      }
-
-      p {
-        margin-top: 10px;
-        color: var(--muted);
-        line-height: 1.6;
-        font-size: 14px;
-      }
-
-      .actions {
-        margin-top: 28px;
-        display: flex;
-        gap: 12px;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-
-      a {
-        text-decoration: none;
-        padding: 10px 16px;
-        border-radius: 10px;
-        font-size: 14px;
-        transition: all 0.2s ease;
-        border: 1px solid var(--border);
-        color: var(--text);
-        background: rgba(255, 255, 255, 0.03);
-      }
-
-      a.primary {
-        background: var(--primary);
-        border-color: transparent;
-        color: white;
-      }
-
-      a:hover {
-        transform: translateY(-2px);
-        border-color: rgba(255, 255, 255, 0.2);
-      }
-
-      a.primary:hover {
-        background: #4f46e5;
-      }
-
-      .hint {
-        margin-top: 24px;
-        font-size: 12px;
-        color: #6b7280;
-      }
-    </style>
   </head>
 
-  <body>
-    <main>
-      <h1>404</h1>
+  <body class="w-full min-h-screen flex items-center justify-center p-0 text-gray-200">
+    <main class="text-center max-w-md p-10 border border-white/10 rounded-2xl bg-gray-900/90 backdrop-blur-lg shadow-2xl">
+      <h1 class="text-8xl m-0 tracking-tight bg-linear-to-r from-indigo-600 to-cyan-200 bg-clip-text text-transparent leading-tight">404</h1>
+      <h2 class="mt-3 text-2xl font-semibold">This page drifted away</h2>
 
-      <h2>This page drifted away</h2>
-
-      <p>
-        The route you tried to access doesn’t exist anymore, or never existed.
+      <p class="mt-2.5 text-gray-400 leading-relaxed text-sm">
+        The route you tried to access doesn't exist anymore, or never existed.
         Check the URL or head back to a safe place.
       </p>
 
-      <div class="actions">
-        <a class="primary" href="/">Go Home</a>
-        <a href="/blog">Read Blog</a>
+      <div class="mt-7 flex gap-3 justify-center flex-wrap">
+        <a 
+          class="no-underline px-4 py-2.5 rounded-lg text-sm transition-all border border-white/10 text-gray-200 bg-white/5 hover:bg-white/10 hover:-translate-y-0.5" 
+          href="/blog"
+        >
+          Read Blog
+        </a>
+        <a 
+          class="no-underline px-4 py-2.5 rounded-lg text-sm transition-all border-none text-white bg-indigo-600 hover:bg-indigo-700 hover:-translate-y-0.5" 
+          href="/"
+        >
+          Go Home
+        </a>
       </div>
 
-      <div class="hint">
+      <div class="mt-6 text-xs text-gray-500">
         Tip: double-check the URL or use navigation
       </div>
     </main>

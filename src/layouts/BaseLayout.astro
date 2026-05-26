@@ -12,27 +12,20 @@ const { pageTitle } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.bunny.net/css?family=metropolis:400,500,700&display=swap" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
   </head>
-  <body>
+  <body class="p-0 min-h-screen flex flex-col">
     <Header />
-    <h1>{pageTitle}</h1>
-    <main>
+    <main class="grow max-w-4xl flex flex-col justify-start m-auto w-full">
+      <h1>{pageTitle}</h1>
       <slot/>
     </main>
-		<!-- The <slot /> allows you to inject (or “slot in”) child content written between opening and closing <Component></Component> tags to any Component.astro file. -->
     <Footer />
     <script>
       import "@scripts/menu.ts";
     </script>
   </body>
 </html>
-
-
-<style>
-  main{
-    min-height: calc(100vh - 98px);
-  }
-</style>

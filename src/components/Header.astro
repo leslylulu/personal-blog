@@ -4,24 +4,23 @@ import Menu from './Menu.astro';
 import ThemeIcon from './ThemeIcon.astro';
 ---
 <header>
-  <nav>
-    <Navigation />
-		<div>
-			<Menu/>
-			<ThemeIcon/>
-		</div>
+  <nav class="flex justify-between items-center h-24 border-b px-6 md:px-12">
+    <a href="/" class="shrink-0">
+      <img 
+        src="/LuluLog.svg" 
+        alt="Lulu Logo" 
+        class="h-8 md:h-12 w-auto hover:opacity-80 transition-opacity"
+      />
+    </a>
+
+    <div class="hidden md:flex flex-1 justify-center">
+      <Navigation />
+    </div>
+
+      <div class="md:hidden">
+        <Menu/>
+      </div>
+      <ThemeIcon/>
+    </div>
   </nav>
 </header>
-
-<style>
-	nav{
-		display: flex;
-		align-items: center;
-		flex-direction: row;
-		gap: 3rem;
-	}
-	div{
-		display: flex;
-		justify-content: space-between;
-	}
-</style>
