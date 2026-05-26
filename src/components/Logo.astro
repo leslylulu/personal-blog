@@ -1,14 +1,14 @@
-
+---
+const { class: className = "text-navy dark:text-white" } = Astro.props;
 ---
 
----
 <svg 
 	xmlns="http://www.w3.org/2000/svg" 
 	width="213" 
 	height="49" 
 	viewBox="0 0 213 49" 
 	fill="none"
-	class="h-10 md:12 w-auto text-navy dark:text-white"
+	class={`h-10 w-auto ${className}`}
 >
 	<path 
 		fill="currentColor" 

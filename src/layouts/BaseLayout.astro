@@ -2,10 +2,10 @@
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 import '@styles/global.css';
-interface Props{
-  pageTitle: string
-}
 
+interface Props {
+  pageTitle?: string;
+}
 const { pageTitle } = Astro.props;
 ---
 <html lang="en">
@@ -17,11 +17,11 @@ const { pageTitle } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
   </head>
-  <body class="p-0 min-h-screen flex flex-col">
+  <body class="min-h-screen flex flex-col bg-cream dark:bg-navy">
     <Header />
-    <main class="grow max-w-4xl flex flex-col justify-start m-auto w-full">
-      <h1>{pageTitle}</h1>
-      <slot/>
+    <main class="grow w-full max-w-5xl mx-auto px-12 py-12">
+      {pageTitle && <h1>{pageTitle}</h1>}
+      <slot />
     </main>
     <Footer />
     <script>

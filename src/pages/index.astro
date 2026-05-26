@@ -1,11 +1,69 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import Greeting from '@components/Greeting';
-const pageTitle = "Home Page";
 ---
-<BaseLayout pageTitle={pageTitle}>
-	<h2>My blog subtitle in the home page</h2>
 
-	<Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
-	<!-- this button client:load tell astro to send and rerun its-->
+<BaseLayout>
+  <section class="py-24 w-full mx-auto">
+		<p class="text-sm tracking-widest text-gray-500 uppercase">
+			May · Learning Journey
+		</p>
+
+		<h1 class="text-5xl font-bold mt-4 leading-tight">
+			Started building this project on
+			<span class="text-transparent bg-clip-text bg-linear-to-r from-purple-500 to-blue-500">
+				May 22
+			</span>
+		</h1>
+
+		<p class="mt-6 text-lg text-gray-600 tracking-widest max-w-2xl font-normal">
+			This project is part of my ongoing frontend growth journey.
+			I’m iterating step by step, learning Astro, refining UI structure,
+			and building a scalable CMS-driven blog system.
+		</p>
+
+
+    <h2 class="text-3xl mt-24 font-bold mb-6">What I will Do</h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="p-6 border hover:shadow-xl transition">
+        <h3 class="font-semibold text-xl">Frontend Engineering</h3>
+        <p class="text-sm mt-2 text-gray-600">
+          React / Astro / TypeScript architecture & performance optimization.
+        </p>
+      </div>
+
+      <div class="p-6 border hover:shadow-xl transition">
+        <h3 class="font-semibold text-xl">CMS Systems</h3>
+        <p class="text-sm mt-2 text-gray-600">
+          Strapi / headless CMS / content-driven websites.
+        </p>
+      </div>
+
+      <div class="p-6 border hover:shadow-xl transition">
+        <h3 class="font-semibold text-xl">UI Design</h3>
+        <p class="text-sm mt-2 text-gray-600">
+          Modern interface design with Tailwind + motion effects.
+        </p>
+      </div>
+    </div>
+
+		<h2 class="text-3xl mt-24 font-bold mb-10">Tech Stack</h2>
+
+    <div class="flex flex-wrap gap-3">
+      {["React", "Astro", "TypeScript", "Tailwind", "Preline", "Strapi", ].map((t) => (
+        <span class="px-4 py-2 border text-navy hover:bg-black hover:text-white transition">
+          # {t}
+        </span>
+      ))}
+    </div>
+  </section>
+
+  <section class="py-24 text-center bg-linear-to-r from-navy to-black text-white">
+    <h2 class="text-3xl font-bold">Let’s build something modern</h2>
+    <p class="mt-4 text-white/70">Open to frontend / UI / CMS roles</p>
+
+    <button class="mt-8 px-6 py-3 bg-white text-black rounded-full hover:scale-105 transition">
+      Contact Me
+    </button>
+  </section>
 </BaseLayout>
