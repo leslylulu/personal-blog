@@ -1,49 +1,126 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
-import '@styles/global.css';
+import BaseLayout from "@layouts/BaseLayout.astro";
 
-const pageTitle = "About Me :)";
-
-interface Identity{
-	firstName: string;
-	city: string;
-  occupation: string;
-  hobbies: string[];
-}
-const identity: Identity = {
-	firstName: "Lulu",
-	city: "Ottawa",
-	occupation: "Frontend Developer",
-	hobbies: ["Cook", "Hike"]
-};
-
-const skills: string[] = ["HTML", "CSS", "JavaScript", "React", "Astro"];
-
-
-const happy: boolean = true;
-const finished: boolean = true;
-const goal: number = 2;
+const skills = ["React", "Next.js", "Astro", "TypeScript", "Tailwind", "Strapi"];
 ---
 
+<BaseLayout>
+  <section class="relative m-0 min-h-screen w-full overflow-hidden p-0">
+    <div class="absolute -top-50 left-1/2 h-175 w-175 -translate-x-1/2 rounded-full bg-purple-300 opacity-30 blur-[140px] dark:bg-cyan-400 dark:opacity-10"></div>
 
-<BaseLayout pageTitle={pageTitle}>
-	<h2>This is my first Astro Site</h2>
-	<p>Here are a few facts about me:</p>
-	<ul>
-		<li>My name is {identity.firstName}.</li>
-		<li>I live in {identity.city} and I work as a {identity.occupation}.</li>
-		{identity.hobbies.length >= 2 &&
-			<li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
-		}
-	</ul>
-	<p>My skills are:</p>
-	<ul class="flex gap-4">
-		{skills.map((skill) => <li class="list-none bg-green-200 rounded px-4 py-2 uppercase text-sm">{skill}</li>)}
-	</ul>
+    <div
+      class="absolute inset-0 bg-[linear-gradient(rgba(17,0,49,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(17,0,49,0.06)_1px,transparent_1px)] bg-size-[20px_20px] dark:bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)]"
+    >
+    </div>
 
-	{happy && <p>I am happy to be learning Astro!</p>}
+    <div class="relative z-10 mx-auto max-w-5xl px-8 py-28">
+      <!-- hero -->
+      <div class="max-w-4xl">
+        <p class="text-navy/50 mb-6 text-sm tracking-[0.35em] uppercase dark:text-white/40">Frontend Developer / UI Engineer</p>
 
-	{finished && <p>I finished this tutorial!</p>}
+        <h1 class="dark:text-cream text-6xl leading-none font-black tracking-[-0.9] text-gray-800 md:text-8xl">
+          Develop modern
+          <span class="bg-linear-to-r from-purple-700 to-black/80 bg-clip-text text-transparent uppercase dark:from-cyan-300 dark:to-blue-500"> web </span>
+        </h1>
 
-	{goal === 2 ? <p>My goal is to finish in 2 days.</p> : <p>My goal is not 2 days.</p>}
+        <p class="text-navy/70 mt-10 max-w-2xl text-lg leading-relaxed font-thin tracking-widest dark:text-white">
+          I'm Lulu, a frontend developer currently exploring Astro, CMS architecture and immersive UI systems.
+        </p>
+      </div>
+
+      <div class="mt-24 grid gap-8 md:grid-cols-2">
+        <div class="group relative overflow-hidden border border-black/5 bg-white/60 p-10 backdrop-blur-2xl transition duration-500 dark:border-white/10 dark:bg-white/3">
+          <div class="absolute inset-0 opacity-0 transition duration-700 group-hover:opacity-100">
+            <div class="absolute inset-0 border border-fuchsia-400/30 dark:border-cyan-400/30"></div>
+            <div class="absolute inset-0 bg-linear-to-r from-transparent via-fuchsia-400/10 to-transparent dark:via-cyan-400/10"></div>
+          </div>
+
+          <div class="relative z-10">
+            <p class="text-navy/40 mb-6 text-sm tracking-[0.3em] uppercase dark:text-white/40">About Me</p>
+
+            <h2 class="mb-5 text-3xl font-bold">Clean systems, thoughtful interfaces.</h2>
+
+            <p class="text-navy/70 leading-relaxed dark:text-white/60">
+              I enjoy building modern frontend experiences with a strong focus on interaction, accessibility, and maintainable architecture. My background includes React, Next.js, Astro and
+              component-driven development.
+            </p>
+          </div>
+        </div>
+
+        <div class="relative min-h-95 overflow-hidden border border-black/5 bg-white/40 backdrop-blur-2xl dark:border-white/10 dark:bg-white/3">
+          <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-[-40%] left-[-20%] h-px w-[140%] rotate-12 animate-pulse bg-linear-to-r from-transparent via-fuchsia-500 to-transparent opacity-60 dark:via-cyan-400"></div>
+          </div>
+
+          <div class="bg-cream/80 dark:bg-navy/80 absolute inset-px flex items-center justify-center">
+            <p class="text-navy/30 text-sm tracking-[0.3em] uppercase dark:text-white/20">Your Image Here</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-24 grid gap-6 md:grid-cols-2">
+        <div class="group relative border border-black/5 bg-white/60 p-8 backdrop-blur-2xl transition-all duration-500 hover:-translate-y-1 dark:border-white/10 dark:bg-white/3">
+          <!-- bottom glow -->
+          <div class="from-grass dark:to-grass absolute bottom-0 left-0 h-px w-0 bg-linear-to-r to-[#10ec00] transition-all duration-500 group-hover:w-full dark:from-white"></div>
+
+          <p class="text-navy/40 mb-4 text-xs tracking-[0.25em] uppercase dark:text-white/40">Frontend</p>
+
+          <h3 class="mb-3 text-2xl font-bold">Modern UI</h3>
+
+          <p class="text-navy/70 leading-relaxed dark:text-white/60">Building clean and responsive interfaces with modern frontend technologies.</p>
+        </div>
+
+        <div class="group relative border border-black/5 bg-white/60 p-8 backdrop-blur-2xl transition-all duration-500 hover:-translate-y-1 dark:border-white/10 dark:bg-white/3">
+          <div class="from-grass dark:to-grass absolute bottom-0 left-0 h-px w-0 bg-linear-to-r to-[#10ec00] transition-all duration-500 group-hover:w-full dark:from-white"></div>
+
+          <p class="text-navy/40 mb-4 text-xs tracking-[0.25em] uppercase dark:text-white/40">Design</p>
+
+          <h3 class="mb-3 text-2xl font-bold">Creative Systems</h3>
+
+          <p class="text-navy/70 leading-relaxed dark:text-white/60">Combining interaction, layout and motion to create immersive experiences.</p>
+        </div>
+
+        <div class="group relative border border-black/5 bg-white/60 p-8 backdrop-blur-2xl transition-all duration-500 hover:-translate-y-1 dark:border-white/10 dark:bg-white/3">
+          <!-- bottom glow -->
+          <div class="from-grass dark:to-grass absolute bottom-0 left-0 h-px w-0 bg-linear-to-r to-[#10ec00] transition-all duration-500 group-hover:w-full dark:from-white"></div>
+
+          <p class="text-navy/40 mb-4 text-xs tracking-[0.25em] uppercase dark:text-white/40">CMS</p>
+
+          <h3 class="mb-3 text-2xl font-bold">Strapi & Content</h3>
+
+          <p class="text-navy/70 leading-relaxed dark:text-white/60">Exploring scalable content architecture with headless CMS solutions.</p>
+        </div>
+
+        <div class="group relative border border-black/5 bg-white/60 p-8 backdrop-blur-2xl transition-all duration-500 hover:-translate-y-1 dark:border-white/10 dark:bg-white/3">
+          <!-- bottom glow -->
+          <div class="from-grass dark:to-grass absolute bottom-0 left-0 h-px w-0 bg-linear-to-r to-[#10ec00] transition-all duration-500 group-hover:w-full dark:from-white"></div>
+
+          <p class="text-navy/40 mb-4 text-xs tracking-[0.25em] uppercase dark:text-white/40">Motion</p>
+
+          <h3 class="mb-3 text-2xl font-bold">Interactive Effects</h3>
+
+          <p class="text-navy/70 leading-relaxed dark:text-white/60">Creating subtle animations and smooth transitions for polished experiences.</p>
+        </div>
+      </div>
+
+      <!-- skills -->
+      <div class="mt-24">
+        <p class="text-navy/40 mb-8 text-sm tracking-[0.3em] uppercase dark:text-white/40">Skills</p>
+
+        <div class="flex flex-wrap gap-4">
+          {
+            skills.map((skill) => (
+              <div class="group relative overflow-hidden border border-black/5 bg-white/50 px-6 py-3 backdrop-blur-xl transition duration-500 hover:-translate-y-1 dark:border-white/10 dark:bg-white/3">
+                <div class="absolute inset-0 opacity-0 transition group-hover:opacity-100">
+                  <div class="absolute inset-0 bg-linear-to-r from-fuchsia-500/10 to-indigo-500/10 dark:from-cyan-400/10 dark:to-blue-500/10" />
+                </div>
+
+                <span class="text-navy/70 relative z-10 text-sm tracking-wider uppercase dark:text-white/70">{skill}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

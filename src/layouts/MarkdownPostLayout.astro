@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-interface Frontmatter{
+interface Frontmatter {
   title: string;
   pubDate: Date;
   description: string;
@@ -18,22 +18,25 @@ interface Props {
 }
 
 const { frontmatter } = Astro.props;
-
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-	<p class="text-sm">Published on: {new Date(frontmatter.pubDate).toLocaleDateString()}</p>
-	<p class="italic text-gray-600"><em>{frontmatter.description}</em></p>
-	<p class="text-gray-700">Written by {frontmatter.author}</p>
-	<img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} class="my-4 rounded" />
+  <p class="text-sm">
+    Published on: {new Date(frontmatter.pubDate).toLocaleDateString()}
+  </p>
+  <p class="text-gray-600 italic"><em>{frontmatter.description}</em></p>
+  <p class="text-gray-700">Written by {frontmatter.author}</p>
+  <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} class="my-4 rounded" />
 
-	<div class="flex flex-wrap gap-5">
-    {frontmatter.tags.map((tag: string) => (
-      <p class="list-none border border-dashed border-gray-400 rounded-3xl px-3 py-1 text-sm bg-blue-300/10 hover:bg-blue-800 text-blue-700 hover:text-white">
-        <a href={`/tags/${tag}`}>{tag}</a>
-      </p>
-    ))}
+  <div class="flex flex-wrap gap-5">
+    {
+      frontmatter.tags.map((tag: string) => (
+        <p class="list-none rounded-3xl border border-dashed border-gray-400 bg-blue-300/10 px-3 py-1 text-sm text-blue-700 hover:bg-blue-800 hover:text-white">
+          <a href={`/tags/${tag}`}>{tag}</a>
+        </p>
+      ))
+    }
   </div>
 
-	<slot />
+  <slot />
 </BaseLayout>

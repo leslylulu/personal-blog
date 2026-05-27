@@ -1,22 +1,18 @@
 ---
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
-import BaseLayout from '@layouts/BaseLayout.astro';
-import BlogPost from '@components/BlogPost.astro';
-import '@styles/global.css';
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogPost from "@components/BlogPost.astro";
+import "@styles/global.css";
 
 // post.data.title/pubDate types will be protected
-const allPosts: CollectionEntry<'blog'>[] = await getCollection("blog");
+const allPosts: CollectionEntry<"blog">[] = await getCollection("blog");
 const pageTitle = "Blog";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-	<p>This is where I will post about my journey learning Astro.</p>
-	<ul>
-		{
-			allPosts.map(post => 
-				<BlogPost url={`/posts/${post.id}`} title={post.data.title}/>
-			)
-		}
-	</ul>
+  <p>This is where I will post about my journey learning Astro.</p>
+  <ul>
+    {allPosts.map((post) => <BlogPost url={`/posts/${post.id}`} title={post.data.title} />)}
+  </ul>
 </BaseLayout>

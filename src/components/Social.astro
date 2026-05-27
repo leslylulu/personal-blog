@@ -1,15 +1,12 @@
 ---
-interface Props{
+interface Props {
   label: string;
   link: string;
   target?: string;
 }
 const { label, link, target } = Astro.props;
 ---
-<a
-  target={target ?? '_self'}
-  href={link}
-  class="text-white underline hover:opacity-90 transition-opacity"
->
+
+<a target={target ?? "_self"} href={link} class="text-white underline transition-opacity hover:opacity-90">
   {label}
 </a>

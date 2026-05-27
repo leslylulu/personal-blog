@@ -1,17 +1,17 @@
 ---
-import Navigation from './Navigation.astro';
-import Menu from './Menu.astro';
-import ThemeIcon from './ThemeIcon.astro';
-import Logo from '@components/Logo.astro';
+import Navigation from "./Navigation.astro";
+import Menu from "./Menu.astro";
+import ThemeIcon from "./ThemeIcon.astro";
+import Logo from "@components/Logo.astro";
 ---
-<header class="w-full border-b border-black/10 dark:border-white/10">
-  <nav class="max-w-5xl mx-auto px-12 flex justify-between items-center h-20">
 
-    <a href="/" class="shrink-0 hover:opacity-70 transition-opacity">
+<header class="w-full border-b border-black/10 dark:border-white/10">
+  <nav class="mx-auto flex h-24 max-w-5xl items-center justify-between px-12">
+    <a href="/" class="shrink-0 transition-opacity hover:opacity-70">
       <Logo />
     </a>
 
-    <div class="hidden md:flex flex-1 justify-center">
+    <div class="hidden flex-1 justify-center md:flex">
       <Navigation />
     </div>
 
@@ -21,6 +21,5 @@ import Logo from '@components/Logo.astro';
       </div>
       <ThemeIcon />
     </div>
-
   </nav>
 </header>

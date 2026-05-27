@@ -1,13 +1,13 @@
 ---
-interface Props{
-	title: string;
-	url: string;
+interface Props {
+  title: string;
+  url: string;
 }
 const { title, url } = Astro.props;
 ---
 
 <li>
-	<a href={url} class="text-lg hover:underline">
-		{title}
-	</a>
+  <a href={url} class="text-lg hover:underline">
+    {title}
+  </a>
 </li>
