@@ -1,46 +1,87 @@
-# Astro Starter Kit: Basics
+# Lulu Zhang — Personal Blog
 
-```sh
-npm create astro@latest -- --template basics
+A personal blog built with [Astro](https://astro.build), featuring markdown-powered posts, dark mode, tag filtering, and RSS feed.
+
+**Live site:** [astrolulu.netlify.app](https://astrolulu.netlify.app)
+
+## Preview
+
+<img src="public/dark-home.png" width="100%" alt="Home page — dark mode" />
+<img src="public/light-blog.png" width="100%" alt="Blog page — light mode" />
+<img src="public/dark-tags.png" width="100%" alt="Tags page — dark mode" />
+
+## Tech Stack
+
+- **[Astro 6](https://astro.build)** — static site generator
+- **[Tailwind CSS v4](https://tailwindcss.com)** — utility-first styling
+- **[Preact](https://preactjs.com)** — interactive components (e.g. greeting)
+- **TypeScript** — type-safe throughout
+
+## Features
+
+- Dark / light mode toggle
+- Markdown blog posts via Astro Content Collections
+- Estimated reading time per post
+- Tag-based filtering (`/tags`, `/tags/[tag]`)
+- RSS feed at `/rss.xml`
+- Sticky frosted-glass header
+- Responsive mobile navigation
+- Modern styled tables in prose content
+- Custom code block UI with language labels
+
+## Project Structure
+
+```
+src/
+├── blog/               # Markdown post files
+├── components/         # Astro & Preact components
+├── layouts/
+│   ├── BaseLayout.astro
+│   └── MarkdownPostLayout.astro
+├── pages/
+│   ├── index.astro
+│   ├── blog.astro
+│   ├── about.astro
+│   ├── 404.astro
+│   ├── rss.xml.ts
+│   ├── posts/[...slug].astro
+│   └── tags/
+│       ├── index.astro
+│       └── [tag].astro
+├── scripts/
+│   └── menu.ts
+├── styles/
+│   └── global.css
+└── utils/
+    └── readingTime.ts
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Commands
 
-## 🚀 Project Structure
+| Command           | Action                                      |
+| :---------------- | :------------------------------------------ |
+| `npm install`     | Install dependencies                        |
+| `npm run dev`     | Start dev server at `localhost:4321`        |
+| `npm run build`   | Type-check and build to `./dist/`           |
+| `npm run preview` | Preview the production build locally        |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Writing a Post
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+Add a `.md` file to `src/blog/` with the following frontmatter:
+
+```markdown
+---
+title: "Your Post Title"
+author: Lulu Zhang
+pubDate: 2026-06-03
+description: "A short description shown in cards and meta."
+tags: ["tag-one", "tag-two"]
+image:
+  url: "https://..."
+  alt: "Image description"
+---
+
+Your content here.
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The post will be available at `/posts/<filename>`.
