@@ -7,6 +7,7 @@
 	--color-navy: #110031;
 	--color-grass: #77D970;
 	--font-sans: 'Metropolis', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial;
+	--font-mono: ui-monospace, 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
 }
 
 @layer base {
@@ -24,14 +25,10 @@
 	body {
 		@apply mx-auto w-full p-0 leading-relaxed m-0;
 	}
-
-	h1 {
-		@apply my-4 text-4xl font-bold;
-	}
-
 }
 
 @layer components {
+	/* Mobile hamburger menu */
 	.menu {
 		background-color: #0d0950;
 		@apply text-white border-none font-bold text-xl px-2.5 py-1.5 cursor-pointer;
@@ -46,13 +43,13 @@
 	}
 
 	.nav-links a {
-		@apply block text-center py-1 no-underline text-xl font-bold uppercase;
+		@apply block text-center py-3 no-underline text-sm font-medium uppercase tracking-widest;
 		color: #0d0950;
 	}
 
 	.nav-links a:hover,
 	.nav-links a:focus {
-		@apply text-white bg-red-600 rounded;
+		@apply text-white bg-gray-900;
 	}
 
 	.dark .nav-links a {
@@ -61,7 +58,7 @@
 
 	.dark .nav-links a:hover,
 	.dark .nav-links a:focus {
-		color: #0d0950;
+		@apply bg-white text-black;
 	}
 
 	:has(.menu[aria-expanded="true"]) .nav-links {
@@ -74,11 +71,162 @@
 		}
 
 		.nav-links a {
-			@apply inline-block px-5 py-3.75;
+			@apply inline-block px-5 py-3;
 		}
 
 		.menu {
 			@apply hidden;
 		}
+	}
+
+	/* ─── Markdown Prose ─────────────────────────── */
+	.prose-content {
+		@apply text-navy/80 leading-relaxed dark:text-white/75;
+		font-size: 1.0625rem;
+	}
+
+	.prose-content h2 {
+		@apply mt-14 mb-5 text-3xl font-black tracking-tight text-gray-900 dark:text-white;
+	}
+
+	.prose-content h3 {
+		@apply mt-10 mb-4 text-xl font-bold text-gray-900 dark:text-white;
+	}
+
+	.prose-content p {
+		@apply mb-6 leading-loose;
+	}
+
+	.prose-content ul {
+		@apply mb-6 space-y-2 pl-6;
+	}
+
+	.prose-content ol {
+		@apply mb-6 space-y-2 pl-6;
+	}
+
+	.prose-content li {
+		@apply list-disc;
+	}
+
+	.prose-content ol li {
+		@apply list-decimal;
+	}
+
+	.prose-content a {
+		@apply text-purple-700 underline underline-offset-2 transition hover:text-purple-900 dark:text-cyan-400 dark:hover:text-cyan-200;
+	}
+
+	.prose-content strong {
+		@apply font-bold text-gray-900 dark:text-white;
+	}
+
+	.prose-content em {
+		@apply italic;
+	}
+
+	/* Inline code */
+	.prose-content :not(pre) > code {
+		font-family: var(--font-mono);
+		@apply rounded-sm bg-black/6 px-1.5 py-0.5 text-sm text-purple-700 dark:bg-white/10 dark:text-cyan-400;
+	}
+
+	/* ─── Code Block – Block Module UI ──────────── */
+	/*
+	 * Shiki (github-dark theme) wraps code in:
+	 *   <pre class="astro-code github-dark" data-language="ts" style="background:...">
+	 *     <code>...</code>
+	 *   </pre>
+	 * We use ::before with attr(data-language) to create a language label header.
+	 */
+	.prose-content pre {
+		position: relative;
+		margin: 2rem 0;
+		padding: 0 !important;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		/* Use github-dark background instead of the inline style */
+		background-color: #0d1117 !important;
+	}
+
+	/* Language label header bar */
+	.prose-content pre::before {
+		content: attr(data-language);
+		display: block;
+		padding: 0.55rem 1.25rem;
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		background-color: #161b22;
+		color: #6e7681;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	/* Code content area */
+	.prose-content pre code {
+		display: block;
+		padding: 1.25rem 1.5rem;
+		overflow-x: auto;
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+		line-height: 1.75;
+		background: transparent !important;
+	}
+
+	.prose-content blockquote {
+		@apply my-8 border-l-2 border-purple-500 pl-6 text-navy/60 dark:border-cyan-400 dark:text-white/50;
+		font-style: italic;
+	}
+
+	.prose-content hr {
+		@apply my-12 border-black/10 dark:border-white/10;
+	}
+
+	.prose-content img {
+		@apply my-8 w-full;
+	}
+
+	/* ─── Table ──────────────────────────────────── */
+	.prose-content table {
+		@apply my-10 w-full border-collapse overflow-hidden rounded-xl text-sm;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.06);
+	}
+
+	.dark .prose-content table {
+		box-shadow: 0 1px 3px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.06);
+	}
+
+	.prose-content thead {
+		@apply bg-navy text-white dark:bg-white/8;
+	}
+
+	.prose-content thead th {
+		@apply px-5 py-3.5 text-left text-xs font-semibold uppercase tracking-widest text-white/80 dark:text-white/60;
+	}
+
+	.prose-content tbody tr {
+		@apply border-b border-black/5 transition-colors duration-150 dark:border-white/5;
+	}
+
+	.prose-content tbody tr:nth-child(even) {
+		@apply bg-navy/4 dark:bg-white/3;
+	}
+
+	.prose-content tbody tr:last-child {
+		@apply border-none;
+	}
+
+	.prose-content tbody tr:hover {
+		@apply bg-grass/10 dark:bg-grass/8;
+	}
+
+	.prose-content tbody td {
+		@apply px-5 py-3.5 text-navy/80 dark:text-white/70;
+	}
+
+	.prose-content tbody td:first-child {
+		@apply font-medium text-navy dark:text-white/90;
 	}
 }

@@ -2,47 +2,151 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 ---
 
-<BaseLayout>
-  <section class="mx-auto max-w-4xl px-0 py-24">
-    <p class="text-sm tracking-widest text-gray-500 uppercase">May · Learning Journey</p>
-
-    <h1 class="mt-4 text-5xl leading-tight font-bold">
-      Started building this project on
-      <span class="bg-linear-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent"> May 22 </span>
-    </h1>
-
-    <p class="mt-6 max-w-2xl text-lg font-normal tracking-widest text-gray-600">This project is part of my ongoing frontend growth journey. I’m iterating step by step, learning Astro, refining UI structure, and building a scalable CMS-driven blog system.</p>
-
-    <h2 class="mt-24 mb-6 text-3xl font-bold">What I will Do</h2>
-
-    <div class="grid gap-6 md:grid-cols-3">
-      <div class="border p-6 transition hover:shadow-xl">
-        <h3 class="text-xl font-semibold">Frontend Engineering</h3>
-        <p class="mt-2 text-sm text-gray-600">React / Astro / TypeScript architecture & performance optimization.</p>
-      </div>
-
-      <div class="border p-6 transition hover:shadow-xl">
-        <h3 class="text-xl font-semibold">CMS Systems</h3>
-        <p class="mt-2 text-sm text-gray-600">Strapi / headless CMS / content-driven websites.</p>
-      </div>
-
-      <div class="border p-6 transition hover:shadow-xl">
-        <h3 class="text-xl font-semibold">UI Design</h3>
-        <p class="mt-2 text-sm text-gray-600">Modern interface design with Tailwind + motion effects.</p>
-      </div>
+<BaseLayout pageTitle="Lulu Zhang — Frontend Developer">
+  <!-- HERO -->
+  <section class="relative w-full overflow-hidden">
+    <div
+      class="absolute inset-0 bg-[linear-gradient(rgba(17,0,49,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(17,0,49,0.04)_1px,transparent_1px)] bg-[size:40px_40px] dark:bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)]"
+    >
     </div>
+    <div class="absolute top-0 right-0 h-175 w-175 translate-x-1/4 -translate-y-1/4 rounded-full bg-purple-200 opacity-40 blur-[140px] dark:bg-purple-900 dark:opacity-25"></div>
 
-    <h2 class="mt-24 mb-10 text-3xl font-bold">Tech Stack</h2>
+    <div class="relative z-10 mx-auto max-w-6xl px-8 pt-32 pb-44">
+      <div
+        class="text-navy/60 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-xs tracking-widest uppercase backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:text-white/50"
+      >
+        <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-green-400"></span>
+        Frontend Developer · UI Engineer
+      </div>
 
-    <div class="flex flex-wrap gap-3">
-      {["React", "Astro", "TypeScript", "Tailwind", "Preline", "Strapi"].map((t) => <span class="text-navy border px-4 py-2 transition hover:bg-black hover:text-white dark:text-gray-400"># {t}</span>)}
+      <h1 class="mt-8 text-[clamp(4rem,12vw,9rem)] leading-none font-black tracking-tighter text-gray-900 dark:text-white">
+        Crafting<br />
+        Modern<br />
+        <span class="bg-linear-to-r from-purple-600 via-violet-500 to-blue-500 bg-clip-text text-transparent dark:from-cyan-300 dark:via-blue-400 dark:to-purple-400">Web.</span>
+      </h1>
+
+      <p class="text-navy/60 mt-10 max-w-xl text-lg leading-relaxed dark:text-white/50">
+        Building scalable, CMS-driven web experiences with Astro, React, and TypeScript. Learning, growing, and shipping in public.
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a
+          href="/about"
+          class="inline-flex items-center gap-2 rounded-full bg-gray-900 px-7 py-3.5 text-sm font-medium text-white transition-all hover:scale-105 hover:bg-black dark:bg-white dark:text-black dark:hover:bg-white/90"
+        >
+          Explore My Work
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+            ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
+          >
+        </a>
+        <a
+          href="/blog"
+          class="text-navy inline-flex items-center gap-2 rounded-full border border-black/15 px-7 py-3.5 text-sm font-medium transition-all hover:bg-black/5 dark:border-white/20 dark:text-white dark:hover:bg-white/5"
+        >
+          Read Blog
+        </a>
+      </div>
     </div>
   </section>
 
-  <section class="from-navy w-full bg-linear-to-r to-black px-0 py-24 text-center text-white">
-    <h2 class="text-3xl font-bold">Let’s build something modern</h2>
-    <p class="mt-4 text-white/70">Open to frontend / UI / CMS roles</p>
+  <!-- SERVICES -->
+  <section class="mx-auto w-full max-w-6xl px-8 py-28">
+    <div class="mb-16 flex items-end justify-between">
+      <div>
+        <p class="text-navy/40 mb-3 text-xs tracking-[0.35em] uppercase dark:text-white/30">What I Build</p>
+        <h2 class="text-4xl font-black tracking-tight text-gray-900 dark:text-white">Services</h2>
+      </div>
+      <a href="/about" class="text-navy/50 hidden text-sm underline-offset-4 transition hover:underline md:block dark:text-white/40">See all →</a>
+    </div>
 
-    <button class="mt-8 rounded-full bg-white px-6 py-3 text-black transition hover:scale-105"> Contact Me </button>
+    <div class="grid gap-px bg-black/5 md:grid-cols-3 dark:bg-white/10">
+      <div class="group bg-cream dark:bg-navy relative p-10 transition-all duration-300 hover:bg-white dark:hover:bg-white/5">
+        <p class="mb-8 text-6xl font-black text-black/5 dark:text-white/5">01</p>
+        <p class="text-navy/40 mb-2 text-xs tracking-[0.25em] uppercase dark:text-white/30">Engineering</p>
+        <h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Frontend Dev</h3>
+        <p class="text-navy/60 text-sm leading-relaxed dark:text-white/50">React / Astro / TypeScript architecture & performance optimization.</p>
+        <div class="mt-10 h-px w-0 bg-purple-500 transition-all duration-500 group-hover:w-full dark:bg-cyan-400"></div>
+      </div>
+
+      <div class="group bg-cream dark:bg-navy relative p-10 transition-all duration-300 hover:bg-white dark:hover:bg-white/5">
+        <p class="mb-8 text-6xl font-black text-black/5 dark:text-white/5">02</p>
+        <p class="text-navy/40 mb-2 text-xs tracking-[0.25em] uppercase dark:text-white/30">Content</p>
+        <h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">CMS Systems</h3>
+        <p class="text-navy/60 text-sm leading-relaxed dark:text-white/50">Strapi / headless CMS / content-driven web architecture.</p>
+        <div class="mt-10 h-px w-0 bg-purple-500 transition-all duration-500 group-hover:w-full dark:bg-cyan-400"></div>
+      </div>
+
+      <div class="group bg-cream dark:bg-navy relative p-10 transition-all duration-300 hover:bg-white dark:hover:bg-white/5">
+        <p class="mb-8 text-6xl font-black text-black/5 dark:text-white/5">03</p>
+        <p class="text-navy/40 mb-2 text-xs tracking-[0.25em] uppercase dark:text-white/30">Design</p>
+        <h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">UI Design</h3>
+        <p class="text-navy/60 text-sm leading-relaxed dark:text-white/50">Modern interfaces with Tailwind, motion effects, and immersive UX.</p>
+        <div class="mt-10 h-px w-0 bg-purple-500 transition-all duration-500 group-hover:w-full dark:bg-cyan-400"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="w-full bg-gray-900 py-20 dark:bg-black">
+    <div class="mx-auto max-w-6xl px-8">
+      <div class="grid grid-cols-2 gap-12 md:grid-cols-4">
+        <div>
+          <p class="text-5xl font-black text-white">3+</p>
+          <p class="mt-2 text-xs tracking-widest text-white/40 uppercase">Years Learning</p>
+        </div>
+        <div>
+          <p class="text-5xl font-black text-white">10+</p>
+          <p class="mt-2 text-xs tracking-widest text-white/40 uppercase">Projects Built</p>
+        </div>
+        <div>
+          <p class="text-5xl font-black text-white">4</p>
+          <p class="mt-2 text-xs tracking-widest text-white/40 uppercase">Blog Posts</p>
+        </div>
+        <div>
+          <p class="text-5xl font-black text-white">∞</p>
+          <p class="mt-2 text-xs tracking-widest text-white/40 uppercase">Things to Learn</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="mx-auto w-full max-w-6xl px-8 py-28">
+    <p class="text-navy/40 mb-3 text-xs tracking-[0.35em] uppercase dark:text-white/30">Technologies</p>
+    <h2 class="mb-16 text-4xl font-black tracking-tight text-gray-900 dark:text-white">Tech Stack</h2>
+
+    <div class="flex flex-wrap gap-3">
+      {
+        ["React", "Astro", "TypeScript", "Tailwind CSS", "Preline UI", "Strapi"].map((t) => (
+          <div class="group border border-black/10 px-6 py-3 transition-all duration-300 hover:border-black hover:bg-black dark:border-white/10 dark:hover:border-white dark:hover:bg-white">
+            <span class="text-navy/70 text-sm font-medium tracking-wide transition-colors group-hover:text-white dark:text-white/60 dark:group-hover:text-black">{t}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="w-full bg-gray-900 py-32 text-white dark:bg-black">
+    <div class="mx-auto max-w-6xl px-8">
+      <p class="mb-6 text-xs tracking-[0.35em] text-white/40 uppercase">Open to Opportunities</p>
+      <h2 class="max-w-2xl text-5xl leading-tight font-black tracking-tight md:text-7xl">
+        Let's build<br />something<br />
+        <span class="bg-linear-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">modern.</span>
+      </h2>
+      <p class="mt-8 max-w-md text-lg text-white/50">Available for frontend, UI, and CMS roles. Let's create something great together.</p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a
+          href="https://github.com/leslylulu/astro-study"
+          target="_blank"
+          class="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-black transition-all hover:scale-105"
+        >
+          View on GitHub
+        </a>
+        <a href="/blog" class="inline-flex items-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-sm font-medium text-white transition-all hover:border-white/40 hover:bg-white/5">
+          Read the Blog →
+        </a>
+      </div>
+    </div>
   </section>
 </BaseLayout>

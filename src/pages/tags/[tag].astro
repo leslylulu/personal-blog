@@ -1,13 +1,13 @@
 ---
-import type { 
+import type {
   InferGetStaticParamsType,
   InferGetStaticPropsType,
-  GetStaticPaths
-} from 'astro';
-import { getCollection } from 'astro:content';
-
-import BaseLayout from '@layouts/BaseLayout.astro';
-import BlogPost from '@components/BlogPost.astro';
+  GetStaticPaths,
+} from "astro";
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogPost from "@components/BlogPost.astro";
+import { getReadingTime } from "@utils/readingTime";
 
 export const getStaticPaths = (async () => {
   const allPosts = await getCollection("blog");
@@ -20,7 +20,6 @@ export const getStaticPaths = (async () => {
       props: { posts: filteredPosts },
     };
   });
-
 }) satisfies GetStaticPaths;
 
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
@@ -28,11 +27,55 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { tag } = Astro.params as Params;
 const { posts } = Astro.props as Props;
-
 ---
-<BaseLayout pageTitle={tag}>
-  <p>Posts tagged with {tag}</p>
-    <ul>
-    {posts.map((post: any) => <BlogPost url={`/posts/${post.id}`} title={post.data.title}/>)}
-  </ul>
+
+<BaseLayout pageTitle={`#${tag} — Lulu Zhang`}>
+  <section class="relative w-full overflow-hidden">
+    <div
+      class="absolute inset-0 bg-[linear-gradient(rgba(17,0,49,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(17,0,49,0.04)_1px,transparent_1px)] bg-[size:40px_40px] dark:bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)]"
+    >
+    </div>
+    <div class="relative z-10 mx-auto max-w-6xl px-8 pt-28 pb-20">
+      <a
+        href="/tags"
+        class="mb-8 inline-flex items-center gap-2 text-xs tracking-[0.25em] text-navy/40 uppercase transition hover:text-navy/70 dark:text-white/30 dark:hover:text-white/60"
+      >
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg
+        >
+        All Tags
+      </a>
+      <h1
+        class="mt-6 text-6xl font-black leading-none tracking-tight text-gray-900 md:text-8xl dark:text-white"
+      >
+        #{tag}
+      </h1>
+      <p class="mt-6 text-lg text-navy/60 dark:text-white/50">
+        {posts.length} post{posts.length !== 1 ? "s" : ""}
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-6xl px-8 py-16">
+    <ul class="grid gap-6 md:grid-cols-2">
+      {
+        posts.map((post: any) => (
+          <BlogPost
+            url={`/posts/${post.id}`}
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            minutesToRead={getReadingTime(post.body ?? "")}
+          />
+        ))
+      }
+    </ul>
+  </section>
 </BaseLayout>

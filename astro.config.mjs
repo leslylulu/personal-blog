@@ -10,8 +10,14 @@ export default defineConfig({
   site: "https://astrolulu.netlify.app/",
   integrations: [preact()],
 
+  markdown: {
+    shikiConfig: {
+      theme: 'github-dark',
+      wrap: false,
+    },
+  },
+
   vite: {
     plugins: [tailwindcss()],
   }
-
 });

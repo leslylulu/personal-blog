@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import MarkdownPostLayout from "@layouts/MarkdownPostLayout.astro";
+import { getReadingTime } from "@utils/readingTime";
 
 import type { InferGetStaticPropsType, GetStaticPaths } from "astro";
 
@@ -17,8 +18,9 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { post } = Astro.props as Props;
 const { Content } = await render(post);
+const minutesToRead = getReadingTime(post.body ?? "");
 ---
 
-<MarkdownPostLayout frontmatter={post.data}>
+<MarkdownPostLayout frontmatter={post.data} minutesToRead={minutesToRead}>
   <Content />
 </MarkdownPostLayout>

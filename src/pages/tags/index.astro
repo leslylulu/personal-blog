@@ -1,18 +1,38 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '@layouts/BaseLayout.astro';
-const pageTitle = "Tag Index";
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
 const allPosts = await getCollection("blog");
-
-const tags = [...new Set(allPosts.map(post => post.data.tags).flat())];
+const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
 ---
-<BaseLayout pageTitle={pageTitle}>
-	<div class="flex flex-wrap gap-1">
-    {tags.map((tag) => (
-      <p class="list-none border border-dashed border-gray-400 rounded px-4 py-2 text-sm bg-blue-50">
-        <a href={`/tags/${tag}`} class="text-blue-700 hover:text-blue-900">{tag}</a>
+
+<BaseLayout pageTitle="Tags — Lulu Zhang">
+  <section class="relative w-full overflow-hidden">
+    <div
+      class="absolute inset-0 bg-[linear-gradient(rgba(17,0,49,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(17,0,49,0.04)_1px,transparent_1px)] bg-[size:40px_40px] dark:bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)]"
+    >
+    </div>
+    <div class="relative z-10 mx-auto max-w-6xl px-8 pt-28 pb-20">
+      <p class="text-navy/40 mb-4 text-xs tracking-[0.35em] uppercase dark:text-white/30">Browse</p>
+      <h1 class="text-6xl leading-none font-black tracking-tight text-gray-900 md:text-8xl dark:text-white">Tags</h1>
+      <p class="text-navy/60 mt-6 text-lg dark:text-white/50">
+        {tags.length} topic{tags.length !== 1 ? "s" : ""} explored
       </p>
-    ))}
-  </div>
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-6xl px-8 py-16">
+    <div class="flex flex-wrap gap-3">
+      {
+        tags.map((tag) => (
+          <a
+            href={`/tags/${tag}`}
+            class="group border border-black/10 px-6 py-3 transition-all duration-300 hover:border-black hover:bg-black dark:border-white/10 dark:hover:border-white dark:hover:bg-white"
+          >
+            <span class="text-navy/70 text-sm font-medium tracking-wide transition-colors group-hover:text-white dark:text-white/60 dark:group-hover:text-black"># {tag}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
 </BaseLayout>
