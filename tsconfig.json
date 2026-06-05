@@ -8,6 +8,7 @@
     "dist"
   ],
   "compilerOptions": {
+    "types": ["node"],
     "jsx": "react-jsx", // no to write import React from 'react' in every file
     "jsxImportSource": "preact", // jsx runtime is from preact
     "plugins": [

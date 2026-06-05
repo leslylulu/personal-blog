@@ -1,17 +1,21 @@
 ---
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import BlogPost from "@components/BlogPost.astro";
 import { getReadingTime } from "@utils/readingTime";
 
 const allPosts: CollectionEntry<"blog">[] = await getCollection("blog");
 const sortedPosts = allPosts
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .map((post) => ({
-    post,
-    minutesToRead: getReadingTime(post.body ?? ""),
-  }));
+  .sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf())
+  .map((post) => {
+    // Sanity body is Portable Text (array of blocks), not a markdown string.
+    // Extract plain text from each block's children spans for reading time.
+    const plainText = (post.data.body ?? [])
+      .filter((block: { _type: string }) => block._type === "block")
+      .flatMap((block: { children: { text: string }[] }) => block.children.map((span) => span.text))
+      .join(" ");
+    return { post, minutesToRead: getReadingTime(plainText) };
+  });
 ---
 
 <BaseLayout pageTitle="Blog — Lulu Zhang">

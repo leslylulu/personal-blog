@@ -1,5 +1,6 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
+import { toHTML } from "@portabletext/to-html";
 import MarkdownPostLayout from "@layouts/MarkdownPostLayout.astro";
 import { getReadingTime } from "@utils/readingTime";
 
@@ -17,10 +18,31 @@ export const getStaticPaths = (async () => {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { post } = Astro.props as Props;
-const { Content } = await render(post);
-const minutesToRead = getReadingTime(post.body ?? "");
+
+// Convert Sanity Portable Text (array of block objects) to HTML
+// Portable Text is Sanity's rich text format — like markdown but stored as structured JSON
+const bodyHTML = post.data.body ? toHTML(post.data.body) : "";
+
+// For reading time: extract plain text from all block spans
+const plainText = (post.data.body ?? [])
+  .filter((block: { _type: string }) => block._type === "block")
+  .flatMap((block: { children: { text: string }[] }) => block.children.map((span) => span.text))
+  .join(" ");
+
+const minutesToRead = getReadingTime(plainText);
+
+// Map Sanity data shape to the frontmatter shape MarkdownPostLayout expects
+const frontmatter = {
+  title: post.data.title,
+  pubDate: new Date(post.data.pubDate),
+  description: post.data.description,
+  author: post.data.author,
+  image: post.data.image ?? { url: "", alt: "" },
+  tags: post.data.tags ?? [],
+};
 ---
 
-<MarkdownPostLayout frontmatter={post.data} minutesToRead={minutesToRead}>
-  <Content />
+<MarkdownPostLayout frontmatter={frontmatter} minutesToRead={minutesToRead}>
+  <!-- set:html renders a raw HTML string — safe here because we generated it ourselves -->
+  <div set:html={bodyHTML} />
 </MarkdownPostLayout>
