@@ -1,44 +1,99 @@
 ---
-import { getCollection } from "astro:content";
+import { client } from "../../sanity/sanityClient";
 import { toHTML } from "@portabletext/to-html";
+import { codeToHtml } from "shiki";
 import MarkdownPostLayout from "@layouts/MarkdownPostLayout.astro";
 import { getReadingTime } from "@utils/readingTime";
 
-import type { InferGetStaticPropsType, GetStaticPaths } from "astro";
+type SanityBlock = {
+  _type: string;
+  _key: string;
+  [key: string]: unknown;
+};
 
-export const getStaticPaths = (async () => {
-  const posts = await getCollection("blog");
+type SanityPost = {
+  title: string;
+  slug: string;
+  pubDate: string;
+  description: string;
+  author: string;
+  image: { url: string; alt: string } | null;
+  tags: string[];
+  body: SanityBlock[];
+};
 
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
-}) satisfies GetStaticPaths;
+export const getStaticPaths = async () => {
+  const slugs = await client.fetch<Array<{ slug: string }>>(`*[_type == "post"]{ "slug": slug.current }`);
+  return slugs.map((entry: { slug: string }) => ({ params: { slug: entry.slug } }));
+};
 
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { slug } = Astro.params;
 
-const { post } = Astro.props as Props;
+const post = await client.fetch<SanityPost | null>(
+  `*[_type == "post" && slug.current == $slug][0] {
+    title,
+    "slug": slug.current,
+    pubDate,
+    description,
+    author,
+    image { "url": asset->url, alt },
+    tags,
+    body
+  }`,
+  { slug },
+);
 
-// Convert Sanity Portable Text (array of block objects) to HTML
-// Portable Text is Sanity's rich text format — like markdown but stored as structured JSON
-const bodyHTML = post.data.body ? toHTML(post.data.body) : "";
+if (!post) return Astro.redirect("/404");
 
-// For reading time: extract plain text from all block spans
-const plainText = (post.data.body ?? [])
-  .filter((block: { _type: string }) => block._type === "block")
-  .flatMap((block: { children: { text: string }[] }) => block.children.map((span) => span.text))
+// Pre-highlight all code blocks with shiki before converting Portable Text
+const highlightedBlocks = new Map<string, string>();
+
+for (const block of post.body ?? []) {
+  if (block._type === "code" && block.code && block._key) {
+    const lang = (block.language as string) || "text";
+    try {
+      const html = await codeToHtml(block.code as string, {
+        lang,
+        theme: "github-dark",
+        transformers: [
+          {
+            pre(node) {
+              node.properties["data-language"] = lang;
+            },
+          },
+        ],
+      });
+      highlightedBlocks.set(block._key, html);
+    } catch {
+      highlightedBlocks.set(block._key, `<pre data-language="${lang}"><code>${block.code}</code></pre>`);
+    }
+  }
+}
+
+const bodyHTML = post.body
+  ? toHTML(post.body, {
+      components: {
+        types: {
+          code: ({ value }) => highlightedBlocks.get(value._key) ?? `<pre data-language="${value.language || "text"}"><code>${value.code}</code></pre>`,
+        },
+      },
+    })
+  : "";
+
+const plainText = (post.body ?? [])
+  .filter((b) => b._type === "block")
+  .flatMap((b) => (b.children as Array<{ text: string }>).map((span) => span.text))
   .join(" ");
 
 const minutesToRead = getReadingTime(plainText);
 
-// Map Sanity data shape to the frontmatter shape MarkdownPostLayout expects
 const frontmatter = {
-  title: post.data.title,
-  pubDate: new Date(post.data.pubDate),
-  description: post.data.description,
-  author: post.data.author,
-  image: post.data.image ?? { url: "", alt: "" },
-  tags: post.data.tags ?? [],
+  title: post.title,
+  pubDate: new Date(post.pubDate),
+  description: post.description,
+  author: post.author,
+  image: post.image ?? { url: "", alt: "" },
+  tags: post.tags ?? [],
 };
 ---
 

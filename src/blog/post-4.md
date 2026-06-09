@@ -171,8 +171,6 @@ git commit -m "final"
 git commit -m "FINAL FINAL"
 ```
 
-These are useless to anyone — including future you at 2am debugging a production incident.
-
 ---
 
 ## 9. Enforce It with Tooling

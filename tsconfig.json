@@ -4,9 +4,7 @@
     ".astro/types.d.ts", // if not astro is not defined
     "**/*"
   ],
-  "exclude": [
-    "dist"
-  ],
+  "exclude": ["dist"],
   "compilerOptions": {
     "types": ["node"],
     "jsx": "react-jsx", // no to write import React from 'react' in every file
@@ -23,8 +21,7 @@
       "@pages/*": ["./src/pages/*"],
       "@scripts/*": ["./src/scripts/*"],
       "@styles/*": ["./src/styles/*"],
-      "@utils/*": ["./src/utils/*"],
+      "@utils/*": ["./src/utils/*"]
     }
-
   }
 }

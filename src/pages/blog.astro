@@ -25,22 +25,14 @@ const sortedPosts = allPosts
     >
     </div>
     <div class="relative z-10 mx-auto max-w-6xl px-8 pt-28 pb-20">
-      <p class="mb-4 text-xs tracking-[0.35em] text-navy/40 uppercase dark:text-white/30">
-        Writing
-      </p>
-      <h1
-        class="text-6xl font-black leading-none tracking-tight text-gray-900 md:text-8xl dark:text-white"
-      >
-        Blog
-      </h1>
-      <p class="mt-6 max-xl text-lg text-navy/60 dark:text-white/50">
-        Thoughts, learnings, and notes from my frontend journey.
-      </p>
+      <p class="text-navy/40 mb-4 text-xs tracking-[0.35em] uppercase dark:text-white/30">Writing</p>
+      <h1 class="text-6xl leading-none font-black tracking-tight text-gray-900 md:text-8xl dark:text-white">Blog</h1>
+      <p class="max-xl text-navy/60 mt-6 text-lg dark:text-white/50">Thoughts, learnings, and notes from my frontend journey.</p>
     </div>
   </section>
 
-  <section class="mx-auto w-full max-w-6xl px-8 py-16">
-    <ul class="grid gap-6 md:grid-cols-2">
+  <section class="mx-auto w-full max-w-6xl px-8 py-12">
+    <ul class="m-0 p-0">
       {
         sortedPosts.map(({ post, minutesToRead }) => (
           <BlogPost
@@ -49,6 +41,8 @@ const sortedPosts = allPosts
             description={post.data.description}
             pubDate={post.data.pubDate}
             minutesToRead={minutesToRead}
+            image={post.data.image}
+            tags={post.data.tags}
           />
         ))
       }

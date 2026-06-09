@@ -63,7 +63,10 @@ export const postSchema = defineType({
       name: "body",
       title: "Body",
       type: "array",
-      of: [{ type: "block" }], // "block" = Sanity's rich text (like markdown, but richer)
+      of: [
+        { type: "block" },
+        { type: "code" },
+      ],
     }),
   ],
 });
