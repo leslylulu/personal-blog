@@ -2,5 +2,5 @@
 User-agent: *
 Allow: /
 
-# Sitemap (Netlify deploy )
-Sitemap: https://astrolulu.netlify.app/sitemap.xml
+# Sitemap (Vercel deploy)
+Sitemap: https://astro-study-sigma.vercel.app/sitemap-index.xml

@@ -2,7 +2,7 @@
 
 A personal blog built with [Astro](https://astro.build) and [Sanity](https://www.sanity.io), featuring CMS-powered posts, dark mode, tag filtering, and RSS feed.
 
-**Live site:** [astrolulu.netlify.app](https://astrolulu.netlify.app)
+**Live site:** [astro-study-sigma.vercel.app](https://astro-study-sigma.vercel.app)
 
 ## Preview
 
@@ -98,4 +98,4 @@ PUBLIC_SANITY_DATASET=production
 
 Find these at [manage.sanity.io](https://manage.sanity.io) → your project → **API**.
 
-When deploying to Netlify, add these same variables under **Site configuration → Environment variables**.
+When deploying to Vercel, add these same variables under **Project Settings → Environment Variables**.

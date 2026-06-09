@@ -8,6 +8,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 
 // loadEnv reads your .env file in astro.config.mjs
 // - first arg: the current mode (development, production, etc.)
@@ -21,7 +22,7 @@ const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://astrolulu.netlify.app/",
+  site: "https://astro-study-sigma.vercel.app/",
   integrations: [
     preact(),
     sanity({
@@ -32,7 +33,8 @@ export default defineConfig({
       apiVersion: "2026-06-05",
       studioBasePath: "/studio",  // the Studio UI will live at localhost:4321/studio
     }),
-    react()
+    react(),
+    sitemap()
   ],
 
   markdown: {
