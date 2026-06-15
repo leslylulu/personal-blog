@@ -1,5 +1,11 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
+
+// getCollection("blog") runs the Sanity loader defined in content.config.ts
+// and returns every entry currently in the "blog" collection.
+const allPosts = await getCollection("blog");
+const postCount = allPosts.length;
 ---
 
 <BaseLayout pageTitle="Lulu Zhang — Frontend Developer">
@@ -72,7 +78,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
         <p class="mb-8 text-6xl font-black text-black/5 dark:text-white/5">02</p>
         <p class="text-navy/40 mb-2 text-xs tracking-[0.25em] uppercase dark:text-white/30">Content</p>
         <h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">CMS Systems</h3>
-        <p class="text-navy/60 text-sm leading-relaxed dark:text-white/50">Strapi / headless CMS / content-driven web architecture.</p>
+        <p class="text-navy/60 text-sm leading-relaxed dark:text-white/50">Sanity / headless CMS / content-driven web architecture.</p>
         <div class="mt-10 h-px w-0 bg-purple-500 transition-all duration-500 group-hover:w-full dark:bg-cyan-400"></div>
       </div>
 
@@ -99,7 +105,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
           <p class="mt-2 text-xs tracking-widest text-white/40 uppercase">Projects Built</p>
         </div>
         <div>
-          <p class="text-5xl font-black text-white">4</p>
+          <p class="text-5xl font-black text-white">{postCount}</p>
           <p class="mt-2 text-xs tracking-widest text-white/40 uppercase">Blog Posts</p>
         </div>
         <div>
@@ -117,7 +123,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 
     <div class="flex flex-wrap gap-3">
       {
-        ["React", "Astro", "TypeScript", "Tailwind CSS", "Preline UI", "Strapi"].map((t) => (
+        ["React", "Astro", "TypeScript", "Tailwind CSS", "Preline UI", "Sanity"].map((t) => (
           <div class="group border border-black/10 px-6 py-3 transition-all duration-300 hover:border-black hover:bg-black dark:border-white/10 dark:hover:border-white dark:hover:bg-white">
             <span class="text-navy/70 text-sm font-medium tracking-wide transition-colors group-hover:text-white dark:text-white/60 dark:group-hover:text-black">{t}</span>
           </div>

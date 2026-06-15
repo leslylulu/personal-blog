@@ -6,7 +6,7 @@ import Logo from "@components/Logo.astro";
 ---
 
 <header class="sticky top-0 z-50 w-full border-b border-black/10 bg-cream/80 backdrop-blur-md dark:border-white/10 dark:bg-navy/80">
-  <nav class="mx-auto flex h-24 max-w-5xl items-center justify-between px-12">
+  <nav class="mx-auto flex h-20 max-w-6xl items-center justify-between px-8 md:h-24">
     <a href="/" class="shrink-0 transition-opacity hover:opacity-70">
       <Logo />
     </a>
@@ -16,10 +16,24 @@ import Logo from "@components/Logo.astro";
     </div>
 
     <div class="flex items-center gap-3">
+      <ThemeIcon />
       <div class="md:hidden">
         <Menu />
       </div>
-      <ThemeIcon />
     </div>
   </nav>
+
+  <div id="mobile-menu" class="max-h-0 overflow-hidden opacity-0 transition-[max-height,opacity] duration-300 ease-in-out md:hidden">
+    <ul class="flex flex-col gap-1 border-t border-black/10 px-8 py-4 dark:border-white/10">
+      <li>
+        <a href="/about" class="block py-3 text-lg font-medium tracking-wide text-black/80 transition hover:text-black dark:text-white/80 dark:hover:text-white">About</a>
+      </li>
+      <li>
+        <a href="/blog" class="block py-3 text-lg font-medium tracking-wide text-black/80 transition hover:text-black dark:text-white/80 dark:hover:text-white">Blog</a>
+      </li>
+      <li>
+        <a href="/tags" class="block py-3 text-lg font-medium tracking-wide text-black/80 transition hover:text-black dark:text-white/80 dark:hover:text-white">Tags</a>
+      </li>
+    </ul>
+  </div>
 </header>

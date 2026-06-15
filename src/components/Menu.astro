@@ -2,4 +2,8 @@
 
 ---
 
-<button aria-expanded="false" aria-controls="main-menu" class="menu"> Menu </button>
+<button id="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu" class="group relative flex h-10 w-10 flex-col items-center justify-center gap-1.5">
+  <span class="block h-0.5 w-6 rounded-full bg-black transition-all duration-300 group-aria-expanded:translate-y-2 group-aria-expanded:rotate-45 dark:bg-white"></span>
+  <span class="block h-0.5 w-6 rounded-full bg-black transition-all duration-300 group-aria-expanded:opacity-0 dark:bg-white"></span>
+  <span class="block h-0.5 w-6 rounded-full bg-black transition-all duration-300 group-aria-expanded:-translate-y-2 group-aria-expanded:-rotate-45 dark:bg-white"></span>
+</button>

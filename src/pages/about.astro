@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-const skills = ["React", "Next.js", "Astro", "TypeScript", "Tailwind", "Strapi"];
+const skills = ["React", "Next.js", "Astro", "TypeScript", "Tailwind", "Sanity"];
 ---
 
 <BaseLayout>
@@ -13,7 +13,7 @@ const skills = ["React", "Next.js", "Astro", "TypeScript", "Tailwind", "Strapi"]
     >
     </div>
 
-    <div class="relative z-10 mx-auto max-w-5xl px-8 py-28">
+    <div class="relative z-10 mx-auto max-w-6xl px-8 py-28">
       <!-- hero -->
       <div class="max-w-4xl">
         <p class="text-navy/50 mb-6 text-sm tracking-[0.35em] uppercase dark:text-white/40">Frontend Developer / UI Engineer</p>
@@ -52,8 +52,8 @@ const skills = ["React", "Next.js", "Astro", "TypeScript", "Tailwind", "Strapi"]
             <div class="absolute top-[-40%] left-[-20%] h-px w-[140%] rotate-12 animate-pulse bg-linear-to-r from-transparent via-fuchsia-500 to-transparent opacity-60 dark:via-cyan-400"></div>
           </div>
 
-          <div class="bg-cream/80 dark:bg-navy/80 absolute inset-px flex items-center justify-center">
-            <p class="text-navy/30 text-sm tracking-[0.3em] uppercase dark:text-white/20">Your Image Here</p>
+          <div class="absolute inset-px overflow-hidden">
+            <img src="/me.JPG" alt="Lulu Zhang" class="h-full w-full object-cover" loading="lazy" />
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@ const skills = ["React", "Next.js", "Astro", "TypeScript", "Tailwind", "Strapi"]
 
           <p class="text-navy/40 mb-4 text-xs tracking-[0.25em] uppercase dark:text-white/40">CMS</p>
 
-          <h3 class="mb-3 text-2xl font-bold">Strapi & Content</h3>
+          <h3 class="mb-3 text-2xl font-bold">Sanity & Content</h3>
 
           <p class="text-navy/70 leading-relaxed dark:text-white/60">Exploring scalable content architecture with headless CMS solutions.</p>
         </div>
